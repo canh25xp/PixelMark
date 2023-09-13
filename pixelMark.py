@@ -8,6 +8,7 @@ coor = list()
 
 index = 0
 
+
 def mouse_callback(event, x, y, flags, params):
     if event == cv.EVENT_LBUTTONDOWN:
         global index
@@ -18,6 +19,7 @@ def mouse_callback(event, x, y, flags, params):
         print ((x, y))
         outputFile.write("{} {}\n".format(x,y))
         cv.imshow(title_window, img)
+
 
 if __name__ == "__main__":
     inputPath = Path(imgPath)
