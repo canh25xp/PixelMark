@@ -2,7 +2,8 @@ import cv2 as cv
 import numpy as np
 from pathlib import Path
 
-imgPath = "./input/cccdc_back_2_20.jpg"
+imgPath = "Data/ocr-obb-label/192_crop_corners.jpg"
+output = "Data/ocr-obb-label/corners/"
 title_window = "Pixel Mark"
 
 coors = []
@@ -24,8 +25,9 @@ def mouse_callback(event, x, y, flags, params):
 
 if __name__ == "__main__":
     inputPath = Path(imgPath)
-    outputTxt = Path("output/"+inputPath.stem+".txt")
-    outputImg = Path("output/"+inputPath.stem+".jpg")
+    outputTxt = Path(output+inputPath.stem+".txt")
+    
+    print(outputTxt)
     
     img = cv.imread(str(inputPath),cv.IMREAD_COLOR)
     
@@ -40,13 +42,13 @@ if __name__ == "__main__":
     cv.waitKey()
     cv.destroyAllWindows()
     
-    for i in range(0, 10):
-        x1, y1 = coors[i]
-        x2, y2 = coors[i + 10]
-        tan = (y2-y1)/(x2-x1)
-        angle = np.rad2deg(np.arctan(tan))
-        print(angle)
-        outputFile.write("{}\n".format(angle))
+    # for i in range(0, 10):
+    #     x1, y1 = coors[i]
+    #     x2, y2 = coors[i + 10]
+    #     tan = (y2-y1)/(x2-x1)
+    #     angle = np.rad2deg(np.arctan(tan))
+    #     print(angle)
+    #     outputFile.write("{}\n".format(angle))
     
-    cv.imwrite(str(outputImg), img)
+    # cv.imwrite(str(outputImg), img)
     outputFile.close()
